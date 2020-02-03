@@ -10,13 +10,13 @@ import java.net.*;
 public class Server {
 
     /**
-     * ПРОГРАММА СЕРВЕР+ НА СОКЕТАХ TCP/IP: сообщение от клиента "stop"
+     * ПРОГРАММА СЕРВЕР НА СОКЕТАХ TCP/IP: сообщение от клиента "stop"
      * останавливает сервер
      *
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        System.out.println("ПРОГРАММА СЕРВЕР+ НА СОКЕТАХ TCP/IP");
+        System.out.println("ПРОГРАММА СЕРВЕР НА СОКЕТАХ TCP/IP");
 
         ServerSocket server = null; // СОКЕТ-СЕРВЕР
         Socket client = null; // СОКЕТ-КЛИЕНТ
@@ -94,6 +94,6 @@ public class Server {
             server.close(); // Закрытие сервера
         }
 
-        System.out.println("РАБОТА СЕРВЕРА+ ЗАВЕРШЕНА");
+        System.out.println("РАБОТА СЕРВЕРА ЗАВЕРШЕНА");
     }
 }

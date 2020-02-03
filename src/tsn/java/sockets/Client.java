@@ -9,7 +9,7 @@ import java.net.*;
 public class Client {
 
     /**
-     * ПРОГРАММА КЛИЕНТ+ НА СОКЕТАХ TCP/IP
+     * ПРОГРАММА КЛИЕНТ НА СОКЕТАХ TCP/IP
      *
      * @param args имя хоста (например, 127.0.0.1, localhost)
      * @throws IOException
@@ -21,7 +21,7 @@ public class Client {
 
         String serverName;
 
-        System.out.println("ПРОГРАММА КЛИЕНТ+ НА СОКЕТАХ TCP/IP");
+        System.out.println("ПРОГРАММА КЛИЕНТ НА СОКЕТАХ TCP/IP");
         if (args.length == 0) {
             System.out.println("Не указан адрес сервера! Используется текущий хост " + LOCAL_HOST);
             serverName = LOCAL_HOST;
@@ -45,13 +45,15 @@ public class Client {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
             PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.println("Передаем задание серверу");
+            System.out.println("Передаем задание серверу:");
 
             int a = 10;
             int b = 20;
 
+            System.out.println("a = " + a);
+            System.out.println("b = " + b);
+            
             out.println(a);
             out.println(b);
             out.println("stop");
@@ -62,17 +64,16 @@ public class Client {
             String x2 = in.readLine();
 
             System.out.println("СЕРВЕР ПОСЛАЛ ОТВЕТ: ");
-            System.out.println("x1 = " + x1);
-            System.out.println("x2 = " + x2);
+            System.out.println("x1 = a + b = " + x1);
+            System.out.println("x2 = a * b = " + x2);
 
             out.close(); // Закрываем выходной поток на сервер
             in.close();  // Закрываем входной поток с сервера
-            br.close(); // Закрываем входной поток клавиатуры
 
         } finally {
             client.close(); // Закрываем клиента
         }
 
-        System.out.println("РАБОТА КЛИЕНТА+ ЗАВЕРШЕНА");
+        System.out.println("РАБОТА КЛИЕНТА ЗАВЕРШЕНА");
     }
 }
