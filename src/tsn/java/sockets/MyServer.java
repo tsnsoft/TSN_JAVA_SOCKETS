@@ -7,7 +7,7 @@ import java.net.*;
  *
  * @author Талипов С.Н.
  */
-public class Server {
+public class MyServer {
 
     /**
      * ПРОГРАММА СЕРВЕР НА СОКЕТАХ TCP/IP: сообщение от клиента "stop"
@@ -15,7 +15,7 @@ public class Server {
      *
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException {
+    public static void start() throws IOException {
         System.out.println("ПРОГРАММА СЕРВЕР НА СОКЕТАХ TCP/IP");
 
         ServerSocket server = null; // СОКЕТ-СЕРВЕР
@@ -28,9 +28,9 @@ public class Server {
         try {
             server = new ServerSocket(port); // Создаем сокет сервера
         } catch (IOException e) {
-            System.out.println("Не могу подключиться к порту " + port + "!");
-            System.out.println("Завершение работы");
-            System.exit(-1);
+            System.err.println("Не могу подключиться к порту " + port + "!");
+            System.err.println("Завершение работы");
+            System.exit(0);
         }
 
         try {
@@ -42,9 +42,9 @@ public class Server {
                     client = server.accept();
                     System.out.println("Подключен клиент с адресом " + client.getInetAddress());
                 } catch (IOException e) {
-                    System.out.println("Ошибка при ожидании клиента");
-                    System.out.println("Завершение работы");
-                    System.exit(-1);
+                    System.err.println("Ошибка при ожидании клиента");
+                    System.err.println("Завершение работы");
+                    System.exit(0);
                 }
 
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
