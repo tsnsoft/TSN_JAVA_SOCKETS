@@ -5,7 +5,7 @@ import java.net.*;
 
 public class MyClient {
 
-    private Socket client = null; // СОКЕТ-КЛИЕНТ
+    private Socket server = null; // СОКЕТ-СЕРВЕР
     private String serverName;
     private final BufferedReader in = null;
     private final PrintWriter out = null;
@@ -26,7 +26,7 @@ public class MyClient {
         System.out.println("Подключение к серверу " + serverName + " на порту " + port + " ...");
 
         try {
-            client = new Socket(serverName, port);
+            server = new Socket(serverName, port);
             System.out.println("Подключение к серверу успешно");
         } catch (IOException e) {
             System.err.println("Не могу подключиться к серверу!");
@@ -35,8 +35,8 @@ public class MyClient {
         }
 
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(server.getInputStream()));
+            PrintWriter out = new PrintWriter(server.getOutputStream(), true);
 
             System.out.println("Передаем задание серверу:");
 
@@ -69,7 +69,7 @@ public class MyClient {
     public void stop() throws IOException {
         out.close(); // Закрываем выходной поток на сервер
         in.close();  // Закрываем входной поток с сервера
-        client.close(); // Закрываем клиента
+        server.close(); // Закрываем клиента
         System.out.println("РАБОТА КЛИЕНТА ЗАВЕРШЕНА");
     }
 
